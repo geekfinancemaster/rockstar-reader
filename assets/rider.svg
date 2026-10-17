@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -58 320 214" width="320" height="214">
+  <defs>
+    <linearGradient id="fl" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#d60b0b"/>
+      <stop offset=".45" stop-color="#ff6a00"/>
+      <stop offset=".8" stop-color="#ffc233"/>
+      <stop offset="1" stop-color="#fff4b0"/>
+    </linearGradient>
+    <linearGradient id="tank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a1f"/>
+      <stop offset="1" stop-color="#7d0f0f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ff5a00" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.2"/></filter>
+    <path id="tongue" d="M0 0 C-7 -10 -4 -18 0 -30 C4 -18 7 -10 0 0Z"/>
+  </defs>
+  <style>
+    .f{transform-box:fill-box;transform-origin:50% 100%;animation:fk .22s ease-in-out infinite alternate}
+    .f2{animation-duration:.31s;animation-delay:-.1s}
+    .f3{animation-duration:.27s;animation-delay:-.17s}
+    @keyframes fk{from{transform:scale(1,.82) skewX(-4deg)}to{transform:scale(.9,1.18) skewX(5deg)}}
+    .w{transform-box:fill-box;transform-origin:50% 50%;animation:sp .5s linear infinite}
+    @keyframes sp{to{transform:rotate(360deg)}}
+  </style>
+
+  <!-- streaming fire behind the bike -->
+  <g filter="url(#blur)" opacity=".9">
+    <ellipse cx="20" cy="86" rx="70" ry="30" fill="#ff5a00" opacity=".55"/>
+  </g>
+  <g>
+    <path class="f" d="M70 98 C20 100 -10 84 -28 96 C-6 80 14 72 -24 58 C26 62 44 70 70 78Z" fill="url(#fl)" transform="translate(0,0)"/>
+    <path class="f f2" d="M80 70 C40 64 18 44 -12 34 C30 30 52 40 84 56Z" fill="url(#fl)" opacity=".9"/>
+    <path class="f f3" d="M92 40 C60 30 34 6 8 -12 C48 -8 70 8 98 28Z" fill="url(#fl)" opacity=".85"/>
+  </g>
+
+  <!-- wheels -->
+  <g>
+    <circle cx="62" cy="112" r="40" fill="url(#glow)"/>
+    <circle cx="214" cy="112" r="40" fill="url(#glow)"/>
+    <g class="w"><circle cx="62" cy="112" r="30" fill="none" stroke="#140c0a" stroke-width="9"/>
+      <circle cx="62" cy="112" r="25" fill="none" stroke="#ff8a1f" stroke-width="3"/>
+      <g stroke="#ffc766" stroke-width="1.6"><path d="M62 87v50M37 112h50M44 94l36 36M80 94L44 130"/></g></g>
+    <g class="w"><circle cx="214" cy="112" r="30" fill="none" stroke="#140c0a" stroke-width="9"/>
+      <circle cx="214" cy="112" r="25" fill="none" stroke="#ff8a1f" stroke-width="3"/>
+      <g stroke="#ffc766" stroke-width="1.6"><path d="M214 87v50M189 112h50M196 94l36 36M232 94L196 130"/></g></g>
+    <circle cx="62" cy="112" r="5" fill="#ffd27a"/><circle cx="214" cy="112" r="5" fill="#ffd27a"/>
+    <!-- fire licking the wheels -->
+    <g>
+      <use href="#tongue" class="f" x="40" y="86" fill="url(#fl)"/>
+      <use href="#tongue" class="f f2" x="62" y="80" fill="url(#fl)"/>
+      <use href="#tongue" class="f f3" x="84" y="88" fill="url(#fl)"/>
+      <use href="#tongue" class="f f2" x="192" y="88" fill="url(#fl)"/>
+      <use href="#tongue" class="f" x="214" y="80" fill="url(#fl)"/>
+      <use href="#tongue" class="f f3" x="236" y="90" fill="url(#fl)"/>
+    </g>
+  </g>
+
+  <!-- bike body -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M62 112L128 98" stroke="#2a2a33" stroke-width="7" fill="none"/>
+    <path d="M214 112L190 60" stroke="#3b3b46" stroke-width="7" fill="none"/>
+    <path d="M60 100 C80 98 92 100 100 104" stroke="#c9ccd4" stroke-width="5" fill="none"/>
+    <rect x="112" y="84" width="58" height="26" rx="6" fill="#22222a"/>
+    <path d="M118 92h46M118 99h46M118 106h46" stroke="#4b4b57" stroke-width="2"/>
+    <path d="M104 64 C130 46 168 50 192 62 L186 82 L118 88Z" fill="url(#tank)" stroke="#2a0606" stroke-width="2"/>
+    <path d="M110 66 C132 54 160 56 180 64" stroke="#ffd27a" stroke-width="2" fill="none" opacity=".8"/>
+    <path d="M70 70 C86 62 104 62 112 70 L106 80 L74 82Z" fill="#14141a"/>
+    <path d="M186 56 L206 52" stroke="#c9ccd4" stroke-width="5" fill="none"/>
+    <circle cx="200" cy="66" r="7" fill="#fff1b8"/><circle cx="200" cy="66" r="14" fill="url(#glow)"/>
+  </g>
+
+  <!-- rider -->
+  <g stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M116 100 L142 86 L124 108" stroke="#17171d" stroke-width="10"/>
+    <path d="M92 72 L150 26" stroke="#1d1d25" stroke-width="20"/>
+    <path d="M148 30 L190 52" stroke="#262630" stroke-width="8"/>
+    <path d="M100 60 L150 30" stroke="#ff6a00" stroke-width="2.4" opacity=".85"/>
+  </g>
+  <circle cx="160" cy="14" r="13" fill="#15151b"/>
+  <path d="M164 8 H174 V16 H162Z" fill="#ffb347"/>
+  <!-- flame plume from the helmet -->
+  <g>
+    <path class="f" d="M150 8 C132 -4 128 -22 112 -38 C132 -34 142 -26 148 -14 C150 -26 158 -34 164 -42 C166 -26 176 -14 174 4Z" fill="url(#fl)"/>
+    <path class="f f2" d="M154 4 C144 -6 142 -16 134 -26 C148 -22 156 -14 160 -4Z" fill="#fff0a8" opacity=".8"/>
+  </g>
+</svg>

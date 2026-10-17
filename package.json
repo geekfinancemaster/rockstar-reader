@@ -1,0 +1,13 @@
+{
+  "name": "ember-reader",
+  "version": "1.0.0",
+  "description": "Ember Reader - Ghost Rider themed PDF Reader",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["pdf-reader", "ghost-rider", "pwa"],
+  "author": "",
+  "license": "MIT"
+}

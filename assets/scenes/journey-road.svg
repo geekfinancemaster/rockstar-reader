@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#140608"/>
+      <stop offset="45%" stop-color="#4a150e"/>
+      <stop offset="75%" stop-color="#a63715"/>
+      <stop offset="100%" stop-color="#ff7b2b"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff2c2"/>
+      <stop offset="40%" stop-color="#ffa63d"/>
+      <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1112"/>
+      <stop offset="100%" stop-color="#0a0506"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#sky)"/>
+  <circle cx="400" cy="270" r="160" fill="url(#sun)"/>
+  <!-- Mountain Silhouettes -->
+  <polygon points="-50,330 180,180 340,310 520,160 720,290 850,220 850,500 -50,500" fill="#1b0c0f"/>
+  <polygon points="50,340 260,230 430,340 600,210 780,320 850,280 850,500 50,500" fill="#120608"/>
+  <!-- Winding Highway -->
+  <path d="M400 300 Q430 350 480 400 T360 500 L440 500 Q560 410 460 360 T400 300 Z" fill="url(#roadGrad)"/>
+  <!-- Glowing Centerline -->
+  <path d="M400 300 Q430 350 480 400 T398 500" stroke="#ffbb33" stroke-width="4" stroke-dasharray="14 10" fill="none" opacity="0.85"/>
+  <!-- Distant Fire Dust -->
+  <circle cx="280" cy="210" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="560" cy="180" r="2" fill="#fff" opacity="0.8"/>
+  <circle cx="680" cy="130" r="1.2" fill="#fff" opacity="0.5"/>
+</svg>

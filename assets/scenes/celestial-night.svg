@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020712"/>
+      <stop offset="60%" stop-color="#061c2e"/>
+      <stop offset="100%" stop-color="#0a324a"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#c9f1ff"/>
+      <stop offset="65%" stop-color="#3cb9ff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0066cc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#nightSky)"/>
+  <!-- Celestial Moon -->
+  <circle cx="580" cy="140" r="90" fill="url(#moonGlow)"/>
+  <circle cx="580" cy="140" r="38" fill="#e8f8ff"/>
+  <!-- Starfield -->
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="120" cy="80" r="1.5"/><circle cx="240" cy="60" r="2.2"/><circle cx="380" cy="110" r="1.2"/>
+    <circle cx="480" cy="45" r="1.8"/><circle cx="700" cy="90" r="1.4"/><circle cx="160" cy="180" r="1"/>
+    <circle cx="310" cy="190" r="2"/><circle cx="720" cy="220" r="1.6"/><circle cx="90" cy="260" r="1.8"/>
+  </g>
+  <!-- Lake Reflection -->
+  <rect y="360" width="800" height="140" fill="#030c14"/>
+  <path d="M0 360 L800 360" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+  <ellipse cx="580" cy="410" rx="45" ry="12" fill="#00d4ff" opacity="0.25" filter="blur(4px)"/>
+  <ellipse cx="580" cy="440" rx="30" ry="8" fill="#00d4ff" opacity="0.18" filter="blur(3px)"/>
+</svg>

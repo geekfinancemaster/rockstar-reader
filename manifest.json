@@ -1,0 +1,14 @@
+{
+  "name": "Rockstar - Ghost Rider Reader",
+  "short_name": "Rockstar",
+  "description": "Mobile-first Ghost Rider Reader with Fight Mode & Relax Mode.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080405",
+  "theme_color": "#ff4800",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

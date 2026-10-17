@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Rockstar - Ghost Rider Reader</title>
+<meta name="description" content="Rockstar: Mobile-first Ghost Rider Reader with Fight Mode & Relax Mode, pleasant reader fonts, and natural 3D page flips.">
+<meta name="theme-color" content="#080405">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rockstar">
+
+<!-- Google Fonts: EB Garamond -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="fight" class="reading-focus">
+
+<!-- Desktop Mobile Preview Shell Wrapper -->
+<div id="deviceContainer">
+  <div id="mobileShell">
+    <!-- Mobile Phone Hardware Header Mockup (Visible on Desktop) -->
+    <div id="phoneSpeaker"><span class="camera-lens"></span></div>
+
+    <div id="app">
+      <!-- Top App Bar (Auto-hides during reading; reappears on tap) -->
+      <header id="topbar">
+        <div class="brand">
+          <span class="skull-icon">💀</span>
+          <h1 id="title">ROCKSTAR</h1>
+        </div>
+
+        <!-- Mode Switcher: Fight Mode (Fiery) vs Relax Mode (Cold) -->
+        <button id="btnThemeToggle" class="mode-pill" aria-label="Toggle Fight or Relax Mode" title="Switch Fight / Relax Mode">
+          <span class="mode-opt mode-fight active"><i class="flame-icon">🔥</i> Fight</span>
+          <span class="mode-opt mode-relax"><i class="frost-icon">❄️</i> Relax</span>
+        </button>
+
+        <div class="top-actions">
+          <!-- Direct Book Upload Button -->
+          <label class="ib upload-btn" title="Upload Any Book (PDF, TXT, EPUB)" aria-label="Upload Book">
+            <input type="file" id="fileDirect" accept=".pdf,.txt,.md,application/pdf" hidden>
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          </label>
+
+          <!-- Toggle Pleasant Reader Mode (AI Concept Visuals + Garamond / Trebuchet MS) -->
+          <button class="ib" id="btnReaderMode" aria-label="Toggle Pleasant Reader View" title="Toggle Pleasant Reader Text View">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/></svg>
+          </button>
+
+          <!-- Reading Mode (Warm Light) -->
+          <button class="ib" id="btnWarm" aria-label="Reading mode (warm light)" aria-pressed="false" title="Warm Light">
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+          </button>
+
+          <!-- Settings -->
+          <button class="ib" id="btnSettings" aria-label="Settings" title="Settings">
+            <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Stage & Realistic 3D Page View -->
+      <main id="stage">
+        <!-- Touch tap zones for mobile reading -->
+        <div id="tapLeft" class="touch-zone tap-left" title="Tap to flip to previous page">
+          <span class="tap-hint">‹</span>
+        </div>
+        <!-- Middle tap zone: toggles controls so reader is not disturbed while reading -->
+        <div id="tapCenter" class="touch-zone tap-center" title="Tap to show/hide reading options"></div>
+        <div id="tapRight" class="touch-zone tap-right" title="Tap to flip to next page">
+          <span class="tap-hint">›</span>
+        </div>
+
+        <div id="scroller" tabindex="-1">
+          <div id="pageWrap" class="book-perspective">
+            <!-- Base Canvas / Content Leaf -->
+            <div id="bookLeafBase" class="book-leaf-base">
+              <!-- 1. Original PDF Canvas View -->
+              <canvas id="page" aria-label="Book page"></canvas>
+
+              <!-- 2. Pleasant Reader Article View (Garamond / Trebuchet MS + Contextual Visuals) -->
+              <article id="pleasantArticle" class="pleasant-article" hidden>
+                <header class="pleasant-header">
+                  <span class="pleasant-badge" id="pleasantBadge">✨ PLEASANT READER</span>
+                  <div class="pleasant-meta">
+                    <span id="pleasantPageNum">Page 1</span>
+                    <span id="pleasantConceptTag" class="concept-tag">Landscape</span>
+                  </div>
+                </header>
+
+                <!-- Contextual Illustration Card for Alternate Pages -->
+                <div class="pleasant-card" id="pleasantCard" hidden>
+                  <div class="card-art-frame">
+                    <img id="pleasantArtImg" src="assets/scenes/journey-road.svg" alt="Contextual Scene" draggable="false">
+                    <div class="card-art-overlay"></div>
+                  </div>
+                  <div class="card-caption" id="pleasantCaption">Visual Concept: The Open Highway</div>
+                </div>
+
+                <!-- Pleasant Formatted Text in Garamond or Trebuchet MS -->
+                <div class="pleasant-body font-garamond" id="pleasantText">
+                  <p>Loading pleasant book text…</p>
+                </div>
+              </article>
+            </div>
+
+            <!-- 3D Flipping Leaf (Natural Page Lifting Animation) -->
+            <div id="pageFlipper" class="page-flipper" aria-hidden="true">
+              <canvas id="pageFlipCanvas"></canvas>
+              <div class="flipper-shadow" id="flipperShadow"></div>
+              <div class="flipper-curl" id="flipperCurl"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vertical Page Slider -->
+        <div id="slider" role="slider" tabindex="0" aria-label="Page slider" aria-orientation="vertical" aria-valuemin="1" aria-valuenow="1" aria-valuemax="1">
+          <div class="rail"></div>
+          <div class="fill"></div>
+          <div class="thumb">
+            <div class="thumb-core"></div>
+          </div>
+          <div class="bubble">1</div>
+        </div>
+
+        <!-- Floating Mobile Quick Page Turn Pill (One-Handed Mobile Reading) -->
+        <div id="mobileQuickBar">
+          <button id="quickPrev" class="quick-btn" aria-label="Previous Page">‹</button>
+          <button id="quickPageBtn" class="quick-page-indicator">Page 1</button>
+          <button id="quickNext" class="quick-btn" aria-label="Next Page">›</button>
+        </div>
+      </main>
+
+      <!-- Bottom Road Tracker with User's Ghost Rider Images and Bike Chain -->
+      <footer id="tracker">
+        <div class="meta">
+          <button id="pageLabel" aria-label="Go to page">Page 1 / 1</button>
+          <div class="mode-status" id="modeStatus">⚔️ Fight Mode</div>
+          <span id="pct">0%</span>
+        </div>
+
+        <div class="road" id="road" title="Drag to jump to any page">
+          <div class="asphalt"></div>
+          <div class="lit" id="lit"></div>
+          <div class="dashes"></div>
+
+          <!-- Ghost Rider Hell Cycle on the Road Tracker -->
+          <div class="rider" id="rider">
+            <!-- Sparks and exhaust flames -->
+            <div class="trail"></div>
+
+            <!-- Ghost Rider Avatar with Spinning Hellfire Wheel & Chain -->
+            <div class="rider-assembly">
+              <!-- Fiery Chain trailing from Ghost Rider's hand -->
+              <svg class="rider-chain-svg" viewBox="0 0 100 24" preserveAspectRatio="none">
+                <path class="chain-path" d="M 2 12 C 25 4, 60 18, 98 12" />
+              </svg>
+
+              <!-- Ghost Rider Badge: Fight Mode Image -->
+              <div class="rider-portrait fight-avatar">
+                <img src="assets/ghost-rider-fire.jpg" alt="Ghost Rider Fight Mode" draggable="false">
+                <div class="fire-ring"></div>
+              </div>
+
+              <!-- Ghost Rider Badge: Relax Mode Image -->
+              <div class="rider-portrait relax-avatar">
+                <img src="assets/ghost-rider-cold.jpg" alt="Ghost Rider Relax Mode" draggable="false">
+                <div class="ice-ring"></div>
+              </div>
+
+              <!-- Spinning Hell Cycle Front Wheel with Flames -->
+              <div class="hell-wheel">
+                <div class="wheel-rim"></div>
+                <div class="wheel-fire"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Warm "reading mode" overlay -->
+<div id="warm" aria-hidden="true"></div>
+
+<!-- Loading Overlay with Hellfire Spinner -->
+<div id="loading" hidden>
+  <div class="ghost-spinner">
+    <div class="flame-ring-spin"></div>
+    <div class="skull-spin">💀</div>
+  </div>
+  <p id="loadText">Summoning book…</p>
+  <div class="bar"><div id="loadBar"></div></div>
+</div>
+
+<!-- Error Overlay -->
+<div id="error" hidden>
+  <div class="card">
+    <h2>Book not found</h2>
+    <p id="errorText"></p>
+    <label class="btn">Choose a PDF or Text Book
+      <input type="file" id="fileErr" accept=".pdf,.txt,.md,application/pdf" hidden>
+    </label>
+  </div>
+</div>
+
+<!-- Settings Sheet (Slide-Up Bottom Sheet on Mobile) -->
+<div id="sheet" hidden>
+  <div class="backdrop" id="sheetBack"></div>
+  <div class="panel" role="dialog" aria-label="Settings">
+    <div class="grab"></div>
+    <h2>Rockstar Reader Settings</h2>
+
+    <!-- Upload Book Row -->
+    <div class="row">
+      <span>Upload Any Book<small>Choose any PDF or Text book from your device</small></span>
+      <label class="btn sm">Upload…<input type="file" id="fileSet" accept=".pdf,.txt,.md,application/pdf" hidden></label>
+    </div>
+
+    <!-- Pleasant Reader Mode Switch -->
+    <div class="row">
+      <span>Pleasant Reader Mode<small>Extracts text + adds contextual art on alternate pages</small></span>
+      <label class="switch"><input type="checkbox" id="chkPleasant"><i></i></label>
+    </div>
+
+    <!-- Font Choice: Garamond vs Trebuchet MS -->
+    <div class="row">
+      <span>Reading Font<small>Editorial elegance or crisp humanist type</small></span>
+      <div class="seg" id="segFont">
+        <button data-f="garamond" class="on">Garamond</button>
+        <button data-f="trebuchet">Trebuchet MS</button>
+      </div>
+    </div>
+
+    <!-- Font Size Slider -->
+    <div class="row col">
+      <span>Font Size <small id="fontSizeVal">18px</small></span>
+      <input type="range" id="rngFontSize" min="14" max="28" value="18">
+    </div>
+
+    <!-- Alternate Page Contextual Art Toggle -->
+    <div class="row">
+      <span>Alternate Page Context Art<small>Illustrates concepts on alternate pages when relevant</small></span>
+      <label class="switch"><input type="checkbox" id="chkConceptArt" checked><i></i></label>
+    </div>
+
+    <!-- Mode Selection Row -->
+    <div class="row">
+      <span>Theme Mode<small>Fight Mode (Fiery) or Relax Mode (Cold Spectral)</small></span>
+      <div class="seg" id="segTheme">
+        <button data-v="fight" class="on">⚔️ Fight Mode</button>
+        <button data-v="relax">❄️ Relax Mode</button>
+      </div>
+    </div>
+
+    <!-- Reading Mode Warmth -->
+    <div class="row">
+      <span>Warm Light Reading<small>Warm yellow light, easier on the eyes</small></span>
+      <label class="switch"><input type="checkbox" id="chkWarm"><i></i></label>
+    </div>
+    <div class="row col">
+      <span>Warmth Intensity <small id="warmVal">25%</small></span>
+      <input type="range" id="rngWarm" min="8" max="60" value="25">
+    </div>
+
+    <!-- Desktop View Mode -->
+    <div class="row">
+      <span>Desktop View Mode<small>Toggle phone frame mockup on desktop</small></span>
+      <button class="btn sm" id="btnToggleShell">📱 Toggle Frame</button>
+    </div>
+
+    <!-- Opening Animation Replay -->
+    <div class="row">
+      <span>Opening animation</span>
+      <button class="btn sm" id="btnReplay">Replay Opening</button>
+    </div>
+
+    <button class="btn full" id="btnClose">Done</button>
+  </div>
+</div>
+
+<!-- Cinematic Opening Sequence Overlay -->
+<div id="intro" hidden>
+  <canvas id="introCanvas"></canvas>
+  <div id="introTitle"></div>
+  <button id="skip">Skip ▸</button>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

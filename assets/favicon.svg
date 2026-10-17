@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#d60b0b"/><stop offset=".5" stop-color="#ff6a00"/><stop offset="1" stop-color="#ffd35a"/>
+    </linearGradient>
+    <radialGradient id="bg" cx=".5" cy=".85" r=".9">
+      <stop offset="0" stop-color="#3a0d07"/><stop offset="1" stop-color="#0b0708"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <!-- flame -->
+  <path d="M256 70 C300 130 360 170 340 250 C334 222 314 208 300 206 C312 240 290 262 256 262 C222 262 200 240 212 206 C198 208 178 222 172 250 C152 170 212 130 256 70Z" fill="url(#g)"/>
+  <path d="M256 150 C276 180 300 200 290 236 C284 224 272 220 266 222 C272 236 266 246 256 246 C246 246 240 236 246 222 C240 220 228 224 222 236 C212 200 236 180 256 150Z" fill="#fff0a8" opacity=".85"/>
+  <!-- open book -->
+  <path d="M256 312 C220 290 168 286 110 300 L110 430 C168 416 220 420 256 442Z" fill="#f3e6d8"/>
+  <path d="M256 312 C292 290 344 286 402 300 L402 430 C344 416 292 420 256 442Z" fill="#e4d2bd"/>
+  <path d="M256 312V442" stroke="#7d0f0f" stroke-width="6"/>
+  <g stroke="#b79b82" stroke-width="5" stroke-linecap="round" opacity=".8">
+    <path d="M136 330c34-6 74-2 100 10M136 358c34-6 74-2 100 10M136 386c34-6 74-2 100 10"/>
+    <path d="M376 330c-34-6-74-2-100 10M376 358c-34-6-74-2-100 10M376 386c-34-6-74-2-100 10"/>
+  </g>
+</svg>
